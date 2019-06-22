@@ -1,0 +1,76 @@
+ /////////////////////Bracket Notation Cheaker/////////////////
+
+            bool b = false;
+            Stack<char> st=new Stack<char>();
+            string op = "[{()}]";
+            char[] a= op.ToCharArray();
+
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (st.Count<=0)
+                {
+                    if (a[i]==']'||a[i]=='}'||a[i]==')')
+                    {
+                        b=false;
+                        break;
+                    }
+                }
+                if (a[i] == '[' || a[i] == '{' || a[i] == '(')
+                {
+                    st.Push(a[i]);
+                }
+                if(st.Count>0 && a[i]==']'||a[i]=='}'||a[i]==')')
+                {
+                    if (a[i]==']')
+                    {
+                        if (st.Pop()=='[')
+                        {
+                            b = true;
+                        }
+                        else
+                        {
+                            b = false;
+                            break;
+                        }                    
+                    }
+                    else if (a[i] == '}')
+                    {
+                        if (st.Pop() == '{')
+                        {
+                            b = true;
+                        }
+                        else
+                        {
+                            b = false;
+                            break;
+                        } 
+                    }
+                    else if (a[i] == ')')
+                    {
+                        if (st.Pop() == '(')
+                        {
+                            b = true;
+                        }
+                        else
+                        {
+                            b = false;
+                            break;
+                        } 
+                    }
+                    else
+                    {
+                        b = false;
+                        break; 
+                    }
+                   
+                }
+            }
+            if (b==true)
+            {
+                Console.WriteLine("Balanced !!!");
+            }
+            else
+            {
+                Console.WriteLine("UN - Balanced !!!");
+            }
